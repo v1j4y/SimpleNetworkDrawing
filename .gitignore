@@ -1,1 +1,6 @@
 CLAUDE.md
+
+examples/figs/*
+!examples/figs/.gitkeep
+*.egg-info/
+__pycache__/
