@@ -391,6 +391,8 @@ def draw_simple_matrix(
     coo,
     size=0.6,
     leg_length=0.6,
+    leg_length_left=None,
+    leg_length_right=None,
     pointing="out",
     color=None,
     leg_color=None,
@@ -404,6 +406,10 @@ def draw_simple_matrix(
     embedding a bare matrix/operator symbol into a larger diagram, so it
     doesn't depend on any named presets registered on `d` - just plain
     style kwargs, self-contained.
+
+    `leg_length_left`/`leg_length_right` override `leg_length` for just
+    one side (e.g. to reach a neighbouring tensor sitting off-center).
+    Default to `leg_length` when left `None`.
 
     `pointing` controls the legs' arrowheads: "out" points them away from
     the square (matches this module's I/J trunk convention), "in" points
@@ -426,6 +432,8 @@ def draw_simple_matrix(
     """
     cx, cy = coo
     hs = size / 2
+    leg_length_left = leg_length if leg_length_left is None else leg_length_left
+    leg_length_right = leg_length if leg_length_right is None else leg_length_right
     base = mcolors.to_rgb(color) if color is not None else _block_color
     fill = (*base, fill_alpha)
     edge = schematic.darken_color(base)
@@ -443,8 +451,8 @@ def draw_simple_matrix(
         linewidth=border_linewidth,
     )
 
-    left = ((cx - hs - leg_length, cy), (cx - hs, cy))
-    right = ((cx + hs, cy), (cx + hs + leg_length, cy))
+    left = ((cx - hs - leg_length_left, cy), (cx - hs, cy))
+    right = ((cx + hs, cy), (cx + hs + leg_length_right, cy))
     if pointing == "out":
         left_ah, right_ah = dict(center=0.5, reverse=True), dict(center=0.5)
     elif pointing == "in":

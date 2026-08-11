@@ -414,7 +414,7 @@ for i in range(3,5):
 coo = (2,0)
 d.text((2,-0.6), "$\Lambda$", fontsize=20)
 draw_simple_matrix(
-    d, coo, size=0.6, leg_length=0.4, pointing="in",
+    d, coo, size=0.6, leg_length_left=0.7, leg_length_right=0.7, pointing="in",
     color=schematic.get_color("orange"), leg_color=d.drawcolor,
 )
 
@@ -448,7 +448,7 @@ for i in range(3,5):
 coo = (2,5)
 d.text((2,5+0.5), "$\Lambda^{\dagger}$", fontsize=20)
 draw_simple_matrix(
-    d, coo, size=0.6, leg_length=0.4, pointing="out",
+    d, coo, size=0.6, leg_length_left=0.7, leg_length_right=0.7, pointing="out",
     color=schematic.get_color("orange"), leg_color=d.drawcolor,
 )
 d.fig.savefig("../figs/paper1.4.png")
@@ -500,12 +500,12 @@ for i in range(3,5):
 coo = (2+1,0)
 d.text((2+1,-0.6), "$\Lambda$", fontsize=20)
 draw_simple_matrix(
-    d, coo, size=0.6, leg_length=0.4, pointing="in",
+    d, coo, size=0.6, leg_length_left=0.4, leg_length_right=0.7, pointing="in",
     color=schematic.get_color("orange"), leg_color=d.drawcolor,
 )
 d.line((2-0.0,-0.0), (2-1.0+0,-0.0), arrowhead=dict(center = 0.5, reverse=True) )
-d.fig.savefig("figs/paper1.4.png")
-d.fig.savefig("figs/paper1.4.pdf")
+#d.fig.savefig("figs/paper1.4.png")
+#d.fig.savefig("figs/paper1.4.pdf")
 
 #d.text((-2,2), "$\\bra{\psi}:$", fontsize=22)
 for i in range(2):
@@ -536,12 +536,12 @@ for i in range(3,5):
 coo = (2+1,2)
 d.text((2+1,2+0.5), "$\Lambda^{\dagger}$", fontsize=20)
 draw_simple_matrix(
-    d, coo, size=0.6, leg_length=0.4, pointing="out",
+    d, coo, size=0.6, leg_length_left=0.4, leg_length_right=0.7, pointing="out",
     color=schematic.get_color("orange"), leg_color=d.drawcolor,
 )
 d.line((2-0.0,2-0.0), (2-1.0+0,2-0.0), arrowhead=dict(center = 0.5, reverse=False) )
-d.fig.savefig("figs/paper1.5.png")
-d.fig.savefig("figs/paper1.5.pdf")
+d.fig.savefig("/home/chilkuri/Documents/claude/SimpleNetworkDrawing/figs/paper1.5.png")
+d.fig.savefig("/home/chilkuri/Documents/claude/SimpleNetworkDrawing/figs/paper1.5.pdf")
 #+end_src
 [[file:figs/paper1.5.png]]
 * Example 1
