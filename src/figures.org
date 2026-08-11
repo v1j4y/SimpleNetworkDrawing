@@ -138,7 +138,11 @@ d.fig.savefig("figs/intro5.png")
 [[file:figs/intro5.png]]
 * Paper figures
 ** MPS
-#+begin_src python 
+#+begin_src python
+import sys
+sys.path.insert(0, "src")
+from block_sparse_matrix import draw_simple_matrix
+
 d = schematic.Drawing(presets=presets)
 
 for i in range(2):
@@ -169,9 +173,10 @@ for i in range(3,5):
 
 coo = (2,0)
 d.text((2,-0.6), "$\Lambda$", fontsize=20)
-d.marker(coo, marker=4, preset="center")
-d.line((2+0,-0.0), (2+1,-0.0), arrowhead=dict(center = 0.5, reverse=True) )
-d.line((2+0,-0.0), (2-1,-0.0), arrowhead=dict(center = 0.5, reverse=True) )
+draw_simple_matrix(
+    d, coo, size=0.6, leg_length=0.4, pointing="in",
+    color=schematic.get_color("orange"), leg_color=d.drawcolor,
+)
 d.fig.savefig("figs/paper1.1.png")
 d.fig.savefig("figs/paper1.1.pdf")
 #+end_src
@@ -355,43 +360,13 @@ d.fig.savefig("figs/paper1.3.1.pdf")
 #+end_src
 [[file:figs/paper1.3.1.png]]
 ** Symmetry
-#+begin_src python :file figs/multi_edges2.png
-d = schematic.Drawing(presets=presets)
+#+begin_src python :file figs/paper1.3.0.png
+import sys
+sys.path.insert(0, "src")
+from block_sparse_matrix import draw_symmetry_equivalence
 
-d.regular_polygon( (0, 0), n=4, orientation=np.pi/1, preset = "center")
-d.text((0+0.0, 0.00), "$\Lambda$", fontsize=15)
+draw_symmetry_equivalence(fname="/home/chilkuri/Documents/claude/SimpleNetworkDrawing/figs/paper1.3.0.png")
 
-# draw virtual bond
-d.line((0, 0.20), (0 + 1, 0.20), preset="bond", arrowhead=dict(center=0.5, reverse=True))
-d.line((0, 0.10), (0 + 1, 0.10), preset="bond", arrowhead=dict(center=0.5, reverse=True))
-#d.line((0, 0.00), (0 + 1, 0.00), preset="bond")
-d.text((0+0.5, 0.03), "$\dots$", fontsize=8)
-d.line((0,-0.10), (0 + 1,-0.10), preset="bond", arrowhead=dict(center=0.5, reverse=True))
-d.line((0,-0.20), (0 + 1,-0.20), preset="bond", arrowhead=dict(center=0.5, reverse=True))
-d.text((0+1.4, 0.20), "$(N^B_1,M^B_1)$", fontsize=8)
-d.text((0+1.4, 0.00), "$(N^B_i,M^B_i)$", fontsize=8)
-d.text((0+1.4,-0.20), "$(N^B_k,M^B_k)$", fontsize=8)
-
-# draw virtual bond
-d.line((0, 0.20), (0 - 1, 0.20), preset="bond", arrowhead=dict(center=0.5, reverse=True))
-d.line((0, 0.10), (0 - 1, 0.10), preset="bond", arrowhead=dict(center=0.5, reverse=True))
-#d.line((0, 0.00), (0 - 1, 0.00), preset="bond")
-d.text((0-0.5, 0.03), "$\dots$", fontsize=8)
-d.line((0,-0.10), (0 - 1,-0.10), preset="bond", arrowhead=dict(center=0.5, reverse=True))
-d.line((0,-0.20), (0 - 1,-0.20), preset="bond", arrowhead=dict(center=0.5, reverse=True))
-d.text((0-1.4, 0.20), "$(N^A_1,M^A_1)$", fontsize=8)
-d.text((0-1.4, 0.00), "$(N^A_i,M^A_i)$", fontsize=8)
-d.text((0-1.4,-0.20), "$(N^A_l,M^A_l)$", fontsize=8)
-
-d.text((0+1.8, 0.00), "$\Leftrightarrow$", fontsize=15)
-
-d.regular_polygon( (3.0, 0), n=4, orientation=np.pi/1, preset = "center")
-d.text((0+3.0, 0.00), "$\Lambda$", fontsize=15)
-d.line((2.0, 0.00), (0 + 3.0, 0.00), preset="bond", arrowhead=dict(center=0.5, reverse=False))
-d.line((4.0, 0.00), (0 + 3.0, 0.00), preset="bond", arrowhead=dict(center=0.5, reverse=False))
-
-d.fig.savefig("figs/paper1.3.0.png")
-d.fig.savefig("figs/paper1.3.0.pdf")
 #+end_src
 [[file:figs/paper1.3.0.png]]
 ** RDM 1
