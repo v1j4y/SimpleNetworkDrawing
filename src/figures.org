@@ -378,6 +378,10 @@ params = {
 }
 matplotlib.rcParams.update(params)
 
+import sys
+sys.path.insert(0, "src")
+from block_sparse_matrix import draw_simple_matrix
+
 d = schematic.Drawing(presets=presets)
 
 d.text((-2,0), "$\ket{\psi}:$", fontsize=22)
@@ -409,9 +413,10 @@ for i in range(3,5):
 
 coo = (2,0)
 d.text((2,-0.6), "$\Lambda$", fontsize=20)
-d.marker(coo, marker=4, preset="center")
-d.line((2+0,-0.0), (2+1,-0.0), arrowhead=dict(center = 0.5, reverse=True) )
-d.line((2+0,-0.0), (2-1,-0.0), arrowhead=dict(center = 0.5, reverse=True) )
+draw_simple_matrix(
+    d, coo, size=0.6, leg_length=0.4, pointing="in",
+    color=schematic.get_color("orange"), leg_color=d.drawcolor,
+)
 d.fig.savefig("figs/paper1.4.png")
 d.fig.savefig("figs/paper1.4.pdf")
 
@@ -444,9 +449,10 @@ for i in range(3,5):
 
 coo = (2,5)
 d.text((2,5+0.5), "$\Lambda^{\dagger}$", fontsize=20)
-d.marker(coo, marker=4, preset="center")
-d.line((2+0,5-0.0), (2+1,5-0.0), arrowhead=dict(center = 0.5, reverse=False) )
-d.line((2+0,5-0.0), (2-1,5-0.0), arrowhead=dict(center = 0.5, reverse=False) )
+draw_simple_matrix(
+    d, coo, size=0.6, leg_length=0.4, pointing="out",
+    color=schematic.get_color("orange"), leg_color=d.drawcolor,
+)
 d.fig.savefig("figs/paper1.4.png")
 d.fig.savefig("figs/paper1.4.pdf")
 #+end_src
@@ -459,6 +465,10 @@ params = {
   "text.latex.preamble": r"\usepackage{braket}",
 }
 matplotlib.rcParams.update(params)
+
+import sys
+sys.path.insert(0, "src")
+from block_sparse_matrix import draw_simple_matrix
 
 d = schematic.Drawing(presets=presets)
 
@@ -491,9 +501,10 @@ for i in range(3,5):
 
 coo = (2+1,0)
 d.text((2+1,-0.6), "$\Lambda$", fontsize=20)
-d.marker(coo, marker=4, preset="center")
-d.line((2+0+1,-0.0), (2+1.0+1,-0.0), arrowhead=dict(center = 0.5, reverse=True) )
-d.line((2+0+1,-0.0), (2-0.5+1,-0.0), arrowhead=dict(center = 0.3, reverse=True) )
+draw_simple_matrix(
+    d, coo, size=0.6, leg_length=0.4, pointing="in",
+    color=schematic.get_color("orange"), leg_color=d.drawcolor,
+)
 d.line((2-0.0,-0.0), (2-1.0+0,-0.0), arrowhead=dict(center = 0.5, reverse=True) )
 d.fig.savefig("figs/paper1.4.png")
 d.fig.savefig("figs/paper1.4.pdf")
@@ -526,9 +537,10 @@ for i in range(3,5):
 
 coo = (2+1,2)
 d.text((2+1,2+0.5), "$\Lambda^{\dagger}$", fontsize=20)
-d.marker(coo, marker=4, preset="center")
-d.line((2+0+1,2-0.0), (2+1.0+1,2-0.0), arrowhead=dict(center = 0.5, reverse=False) )
-d.line((2+0+1,2-0.0), (2-0.5+1,2-0.0), arrowhead=dict(center = 0.8, reverse=False) )
+draw_simple_matrix(
+    d, coo, size=0.6, leg_length=0.4, pointing="out",
+    color=schematic.get_color("orange"), leg_color=d.drawcolor,
+)
 d.line((2-0.0,2-0.0), (2-1.0+0,2-0.0), arrowhead=dict(center = 0.5, reverse=False) )
 d.fig.savefig("figs/paper1.5.png")
 d.fig.savefig("figs/paper1.5.pdf")
