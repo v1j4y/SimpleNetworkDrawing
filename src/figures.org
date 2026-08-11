@@ -417,8 +417,6 @@ draw_simple_matrix(
     d, coo, size=0.6, leg_length=0.4, pointing="in",
     color=schematic.get_color("orange"), leg_color=d.drawcolor,
 )
-d.fig.savefig("figs/paper1.4.png")
-d.fig.savefig("figs/paper1.4.pdf")
 
 d.text((-2,5), "$\\bra{\psi}:$", fontsize=22)
 for i in range(2):
@@ -453,8 +451,8 @@ draw_simple_matrix(
     d, coo, size=0.6, leg_length=0.4, pointing="out",
     color=schematic.get_color("orange"), leg_color=d.drawcolor,
 )
-d.fig.savefig("figs/paper1.4.png")
-d.fig.savefig("figs/paper1.4.pdf")
+d.fig.savefig("../figs/paper1.4.png")
+d.fig.savefig("../figs/paper1.4.pdf")
 #+end_src
 [[file:figs/paper1.4.png]]
 ** RDM 2: contracted
