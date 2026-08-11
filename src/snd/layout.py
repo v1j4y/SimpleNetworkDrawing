@@ -1,12 +1,11 @@
 """Position computation for a TensorNetwork's tensors. Three lattice-
 aware modes (`chain`, `grid`, `manual`) cover the small, hand-tunable
 networks this library targets; `auto` defers to quimb's own graph
-layout (`get_positions`) for anything else."""
+layout (via `draw_tn(..., get="pos")`) for anything else."""
 
 from typing import Dict, Literal, Optional, Tuple
 
-import networkx as nx
-from quimb.tensor.drawing import get_positions
+from quimb.tensor.drawing import draw_tn
 
 LayoutKind = Literal["chain", "grid", "auto", "manual"]
 
@@ -53,11 +52,7 @@ def _grid_positions(tn) -> Positions:
 
 
 def _auto_positions(tn, fix: Optional[Positions]) -> Positions:
-    G = nx.Graph()
-    G.add_nodes_from(tn.tensor_map.keys())
-    for tids in tn.ind_map.values():
-        if len(tids) == 2:
-            t1, t2 = tuple(tids)
-            G.add_edge(t1, t2)
-    pos = get_positions(tn, G, fix=fix, dim=2)
-    return {tid: (float(xy[0]), float(xy[1])) for tid, xy in pos.items()}
+    pos = draw_tn(tn, fix=fix, dim=2, get="pos")
+    return {
+        tid: (float(pos[tid][0]), float(pos[tid][1])) for tid in tn.tensor_map
+    }
